@@ -5,6 +5,5 @@
   "repository": "https://github.com/altabre/sdd-workflow-plugin",
   "license": "MIT",
   "skills": "./skills/",
-  "modes": "./modes/",
   "hooks": "./hooks/hooks.json"
 }
