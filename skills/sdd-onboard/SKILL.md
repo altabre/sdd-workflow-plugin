@@ -78,7 +78,7 @@ project:
   build_tool: "auto-detected"
 
 inputs:
-  prd: required
+  prd: optional          # required | optional（optional 时没有 PRD 会进入 sdd-ideate 脑暴阶段）
   api_design: required
   db_design: required
 
@@ -119,11 +119,16 @@ defaults:
 按全局 config 中的 inputs 配置收集：
 
 **必选（required 的项）：**
-- PRD 文档路径或链接（飞书/Confluence/本地文件）
 - API 设计文档 / Swagger 链接
 - DB 设计文档（表结构、ER 图）
 
-**可选（optional 的项）：**
+**PRD（根据 config 中 inputs.prd 决定）：**
+- `required` → 必须提供，不提供则阻塞
+- `optional` → 询问用户是否已有 PRD：
+  - 有 → 提供路径/内容，保存到 `inputs/prd.md`
+  - 没有 → 记录到 `inputs/README.md`，后续由 `sdd-ideate` 阶段补充
+
+**可选：**
 - JIRA ticket 链接
 - Figma 设计稿
 - 技术约束说明
