@@ -1,0 +1,9 @@
+{
+  "name": "sdd-workflow-plugin",
+  "version": "0.1.0",
+  "description": "Spec-Driven Development (SDD) workflow for Claude Code",
+  "repository": "https://github.com/altabre/sdd-workflow-plugin",
+  "license": "MIT",
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
+}

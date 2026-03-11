@@ -1,0 +1,24 @@
+{
+  "name": "sdd-workflow",
+  "owner": {
+    "name": "altabre"
+  },
+  "metadata": {
+    "description": "Spec-Driven Development workflow plugin for Claude Code",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "sdd-workflow-plugin",
+      "source": "./plugin",
+      "description": "Spec-Driven Development (SDD) workflow — PRD to MR in 10 structured stages",
+      "version": "0.1.0",
+      "author": {
+        "name": "altabre"
+      },
+      "license": "MIT",
+      "keywords": ["sdd", "workflow", "spec", "tdd", "development"],
+      "category": "development"
+    }
+  ]
+}
