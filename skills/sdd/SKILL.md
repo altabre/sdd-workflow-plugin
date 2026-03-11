@@ -1,5 +1,5 @@
 ---
-name: sdd-workflow
+name: sdd
 description: "SDD 主编排器。当用户说 /sdd、开始开发、新需求 等触发。管理多需求目录，按阶段顺序调度子 Skill，管理状态流转和反馈环路。"
 ---
 
