@@ -1,0 +1,29 @@
+{
+  "description": "SDD Workflow hooks",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -d .sdd ]; then ACTIVE=$(find .sdd -name state.yaml -exec grep -l 'current_stage:' {} \\; 2>/dev/null | while read f; do STAGE=$(grep 'current_stage:' \"$f\" | awk '{print $2}'); if [ \"$STAGE\" != 'DONE' ]; then DIR=$(dirname \"$f\" | xargs basename); TASK=$(grep 'current_task:' \"$f\" | awk '{print $2}'); TOTAL=$(grep 'total_tasks:' \"$f\" | awk '{print $2}'); echo \"  - $DIR: $STAGE (Task $TASK/$TOTAL)\"; fi; done); if [ -n \"$ACTIVE\" ]; then echo \"SDD: 检测到未完成的需求:\"; echo \"$ACTIVE\"; echo \"执行 /sdd 继续，/sdd list 查看全部。\"; fi; fi",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -d .sdd ]; then find .sdd -maxdepth 2 -name state.yaml 2>/dev/null | while read f; do if grep -q 'current_stage: TDD_IMPL' \"$f\" 2>/dev/null; then echo 'SDD: TDD 模式 — 确保先写测试再写实现'; break; fi; done; fi",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

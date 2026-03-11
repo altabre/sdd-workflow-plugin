@@ -1,0 +1,6 @@
+{
+  "name": "sdd-workflow-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Spec-Driven Development workflow for Claude Code"
+}

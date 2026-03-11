@@ -1,0 +1,36 @@
+# SDD 流程配置
+# 复制到项目根目录 .sdd/config.yaml 并根据项目调整
+
+project:
+  name: ""                    # 项目名称
+  repo: ""                    # 仓库地址
+  tech_stack: auto            # 自动检测，或手动指定: java / go / rust / python / node
+  test_framework: auto        # 自动检测，或手动指定: junit / testng / gotest / pytest
+  build_tool: auto            # 自动检测，或手动指定: maven / gradle / make / cargo
+
+# 输入物料要求
+inputs:
+  prd: required               # required | optional
+  api_design: required        # required | optional
+  db_design: required         # required | optional
+  jira_ticket: optional       # required | optional
+  figma: optional             # required | optional
+
+# Gate 控制 — 每个阶段完成后的行为
+# manual: 暂停等人确认
+# auto:   AI 自动评审，通过则继续
+# skip:   跳过该阶段
+gates:
+  spec_review: manual
+  e2e_plan_review: manual
+  code_review: auto
+  e2e_verify: manual
+  create_mr: manual
+
+# 默认参数
+defaults:
+  branch_prefix: "feat/"                # 分支前缀
+  commit_convention: conventional       # conventional | angular | custom
+  test_coverage_threshold: 80           # 测试覆盖率阈值 (%)
+  max_loop_backs: 3                     # 单阶段最大回退次数
+  spec_max_unconfirmed_items: 5         # spec 中待确认项超过此数必须人工介入
