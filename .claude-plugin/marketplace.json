@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "sdd-workflow-plugin",
-      "source": "./plugin",
+      "source": "./",
       "description": "Spec-Driven Development (SDD) workflow — PRD to MR in 10 structured stages",
       "version": "0.1.0",
       "author": {
