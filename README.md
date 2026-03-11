@@ -23,11 +23,7 @@ PRD + API Doc + DB Design
 
 ```bash
 # 方式一：从 GitHub marketplace
-/plugin marketplace add yourorg/sdd-workflow
-/plugin install sdd-workflow
-
-# 方式二：手动安装
-git clone https://github.com/yourorg/sdd-workflow-plugin ~/.claude/plugins/sdd-workflow
+claude plugin marketplace add altabre/sdd-workflow-plugin
 ```
 
 ## 使用
