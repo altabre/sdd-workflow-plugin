@@ -19,13 +19,14 @@ inputs:
 # Gate 控制 — 每个阶段完成后的行为
 # manual: 暂停等人确认
 # auto:   AI 自动评审，通过则继续
+# flow:   智能自动流转，仅在卡点/决策点暂停（推荐）
 # skip:   跳过该阶段
 gates:
-  spec_review: manual
-  e2e_plan_review: manual
-  code_review: auto
-  e2e_verify: manual
-  create_mr: manual
+  spec_review: flow
+  e2e_plan_review: flow
+  code_review: flow
+  e2e_verify: flow
+  create_mr: flow
 
 # 默认参数
 defaults:

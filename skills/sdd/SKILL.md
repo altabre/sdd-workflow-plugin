@@ -74,6 +74,7 @@ IDEATE 为可选阶段：
 每个阶段完成后，根据 config.yaml 中的 gates 配置决定：
 - `manual` — 暂停，展示产出物，等用户确认后继续
 - `auto` — AI 自动评审，通过则继续，不通过则回退
+- `flow` — 智能自动流转：有卡点（P0问题/待确认项/架构决策）时暂停，否则自动推进
 - `skip` — 跳过该阶段
 
 ### Gate → 阶段映射
@@ -87,6 +88,17 @@ IDEATE 为可选阶段：
 | `create_mr` | CREATE_MR (10) | — |
 
 无 gate 的阶段（ONBOARD, PRD_TO_SPEC, SPEC_TO_TASKS, TDD_IMPL, E2E_TESTS）自动进入下一阶段。
+
+### `flow` 模式暂停条件
+
+| 阶段 | 暂停条件 | 自动通过条件 |
+|------|---------|------------|
+| SPEC_REVIEW | 有 P0 问题 或 待确认项 > 0 | 无 P0，无待确认项 |
+| SPEC_TO_PLAN | 有重大架构分歧需用户选择 | 方案清晰，AI 可自行决策 |
+| CODE_REVIEW | 有 MUST FIX 问题 | 无 MUST FIX（SHOULD FIX 自动记录） |
+| E2E_VERIFY | 有测试失败 | 所有测试通过 |
+| CREATE_MR | 从不暂停 | 始终自动创建 |
+| TDD_IMPL blocker | 始终暂停 | — |
 
 ## 状态文件格式
 
